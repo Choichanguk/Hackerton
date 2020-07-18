@@ -1,21 +1,14 @@
 package com.example.hackerton;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.concurrent.ExecutionException;
+import com.example.hackerton.sql.LoadSql;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG= "LoginActivity";
@@ -131,27 +124,10 @@ public class LoginActivity extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                try {
-                    GetPost_php task = new GetPost_php(LoginActivity.this);
-                    task.execute("http://192.168.254.129/mysql_android_pushData.php", "test");
-
-                    String callBackValue = task.get();
-
-                    if(callBackValue.isEmpty() || callBackValue.equals("") || callBackValue == null || callBackValue.contains("Error")) {
-                        Toast.makeText(LoginActivity.this, "등록되지 않은 사용자이거나, 전송오류입니다.", Toast.LENGTH_SHORT).show();
-                    }
-                    // success
-                    else {
-                        Log.e(TAG, callBackValue);
-                        // TODO : callBackValue를 이용해서 코드기술
-                    }
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                String key = "ID";
+                String value = "test1";
+                LoadSql loadSql = new LoadSql(LoginActivity.this);
+                loadSql.LoadSqlmethod(key, value);
             }
         });
 
