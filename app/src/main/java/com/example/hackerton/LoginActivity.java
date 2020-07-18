@@ -120,12 +120,15 @@ public class LoginActivity extends AppCompatActivity {
 //            }
 //        });
 
+
+        /*로드시킬 데이터 키(컬럼)-벨류(값) 입력하여 값을 받아옴
+        해당 벨류(값)이 들어간 row값을 가져옴*/
         test = findViewById(R.id.test);
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String key = "ID";
-                String value = "test1";
+                String key = "ID"; // 컬럼
+                String value = "test1"; // 값
                 LoadSql loadSql = new LoadSql(LoginActivity.this);
                 loadSql.LoadSqlmethod(key, value);
             }
