@@ -2,6 +2,7 @@ package com.example.hackerton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +27,9 @@ public class Weightlifting extends AppCompatActivity  {
     */
     boolean game = true;
     boolean end = true;
+
+    // MediaPlayer 객체생성
+    MediaPlayer mediaPlayer;
 //    int i = 0;
 
     /*
@@ -269,12 +273,19 @@ public class Weightlifting extends AppCompatActivity  {
             }
             if (msg.what == 14) {
                 imageview.setImageResource(R.drawable.a12);
+                mediaPlayer = MediaPlayer.create(Weightlifting.this, R.raw.crap);
+                mediaPlayer.start();
+
                 end = false;
                 start_click_button.setVisibility(View.VISIBLE);
                 start_click_button.setOnClickListener(
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                // 정지버튼
+                                mediaPlayer.stop();
+                                // 초기화
+                                mediaPlayer.reset();
                                 end = true;
                                 start_click_button.setVisibility(View.GONE);
                                 click = 0;
