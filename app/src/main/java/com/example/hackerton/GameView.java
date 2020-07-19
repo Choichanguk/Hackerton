@@ -7,12 +7,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.media.MediaRecorder;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 public class GameView extends View {
@@ -31,7 +34,7 @@ public class GameView extends View {
     Bitmap [] birds;
     //We need an integer variable to keep track of bird image
     int birdFrame=0;
-    int velocity=50, gravity=3; // Let's play around with these values
+    int velocity=50, gravity=10; // Let's play around with these values
     //We need to keep track of bird position
     int birdX, birdY;
     boolean gameState = false;
@@ -42,11 +45,18 @@ public class GameView extends View {
     int[] tubeX = new int[numberOfTubes];
     int[] topTubeY = new int[numberOfTubes];
     Random random;
-    int tubeVelocity = 8;
+    int tubeVelocity = 25;
+
+    MediaRecorderDemo mediaRecorderDemo = new MediaRecorderDemo();
+
+
 
 
     public GameView(Context context) {
         super(context);
+
+        mediaRecorderDemo.startRecord();
+
         handler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -54,7 +64,7 @@ public class GameView extends View {
                 invalidate(); //this will call onDraw();
             }
         };
-        background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+        background = BitmapFactory.decodeResource(getResources(), R.drawable.base);
         toptube = BitmapFactory.decodeResource(getResources(), R.drawable.toptube);
         bottomtube = BitmapFactory.decodeResource(getResources(), R.drawable.obstacle);
         display = ((Activity)getContext()).getWindowManager().getDefaultDisplay();
@@ -183,7 +193,7 @@ public class GameView extends View {
             for(int i=0; i<numberOfTubes; i++) {
                 tubeX[i] -= tubeVelocity;
                 if(tubeX[i] < -toptube.getWidth()){
-                    tubeX[i] += numberOfTubes * distanceBetweenTubes;
+                    tubeX[i] += numberOfTubes * distanceBetweenTubes ;
                     topTubeY[i] = minTubeOffset + random.nextInt(maxTubeOffset - minTubeOffset + 1);
                 }
 //                canvas.drawBitmap(toptube, tubeX[i], topTubeY[i] - toptube.getHeight(), null);
@@ -219,8 +229,8 @@ public class GameView extends View {
 
                 Log.d("멈춤","1번 부딪힘");
 
-                tubeX[0] = tubeX[0] + 8;
-                tubeX[1] = tubeX[1] + 8;
+                tubeX[0] = tubeX[0] + 25;
+                tubeX[1] = tubeX[1] + 25;
 
             }
 
@@ -232,8 +242,8 @@ public class GameView extends View {
 
                 Log.d("멈춤","2번 부딪힘");
 
-                tubeX[0] = tubeX[0] + 8;
-                tubeX[1] = tubeX[1] + 8;
+                tubeX[0] = tubeX[0] + 25;
+                tubeX[1] = tubeX[1] + 25;
 
             }
         }
@@ -254,4 +264,125 @@ public class GameView extends View {
 
         return true;// By returning true indicates that we've done with touch event and no further action is required by Android
     }
+
+    public class MediaRecorderDemo {
+
+        private final String TAG = "MediaRecord";
+        private MediaRecorder mMediaRecorder;
+        public static final int MAX_LENGTH = 1000 * 60 * 10;/*When the maximum recording length // 1000 * 60 * 10;*/
+        private String filePath;
+        public int gar;
+
+
+        public MediaRecorderDemo() {
+            this.filePath = "/dev/null";
+        }
+
+        public MediaRecorderDemo(File file) {
+            this.filePath = file.getAbsolutePath();
+        }
+
+        private long startTime;
+        private long endTime;
+
+        /**
+         * Use start recording amr format
+         * <p>
+         * Recording files
+         *
+         * @return
+         */
+        public void startRecord() {
+      /*  // start recording
+        / * ①Initial: MediaRecorder instantiate objects * /*/
+            if (mMediaRecorder == null)
+                mMediaRecorder = new MediaRecorder();
+            try {
+                /* ②setAudioSource/setVedioSource */
+                mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);// set the microphone
+                /* / * Set ② encoded audio file: AAC / AMR_NB / AMR_MB / Default sound (waveform) samples * /*/
+                mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+                /*
+                 * Output file format setting ②: THREE_GPP / MPEG-4 / RAW_AMR / Default THREE_GPP (3gp format
+                 *, H263 videos / ARM Audio Coding), MPEG-4, RAW_AMR (only support audio and audio encoding requirements AMR_NB)
+                 */
+                mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+
+                /*/ * ③ ready * /*/
+                mMediaRecorder.setOutputFile(filePath);
+                mMediaRecorder.setMaxDuration(MAX_LENGTH);
+                mMediaRecorder.prepare();
+                /* ④ start */
+                mMediaRecorder.start();
+                // AudioRecord audioRecord.
+                /* * * Acquisition start time */
+                startTime = System.currentTimeMillis();
+                updateMicStatus();
+                Log.i("ACTION_START", "startTime" + startTime);
+            } catch (IllegalStateException e) {
+                Log.i(TAG,
+                        "call startAmr(File mRecAudioFile) failed!"
+                                + e.getMessage());
+            } catch (IOException e) {
+                Log.i(TAG,
+                        "call startAmr(File mRecAudioFile) failed!"
+                                + e.getMessage());
+            }
+        }
+
+        /**
+         * Stop recording
+         */
+        public long stopRecord() {
+            if (mMediaRecorder == null)
+                return 0L;
+            endTime = System.currentTimeMillis();
+            Log.i("ACTION_END", "endTime" + endTime);
+            mMediaRecorder.stop();
+            mMediaRecorder.reset();
+            mMediaRecorder.release();
+            mMediaRecorder = null;
+            Log.i("ACTION_LENGTH", "Time" + (endTime - startTime));
+            return endTime - startTime;
+        }
+
+        private final Handler mHandler = new Handler();
+        private Runnable mUpdateMicStatusTimer = new Runnable() {
+            public void run() {
+                updateMicStatus();
+            }
+        };
+
+        /**
+         * Updated microphone status
+         */
+        private int BASE = 170;
+        private int SPACE = 100;// sampling time interval
+
+        private void updateMicStatus() {
+            if (mMediaRecorder != null) {
+                double ratio = (double) mMediaRecorder.getMaxAmplitude() / BASE;
+
+                double db = 0;// db
+                if (ratio > 1)
+                    db = 20 * Math.log10(ratio);
+                Log.d(TAG, "Decibel value:" + db);
+                mHandler.postDelayed(mUpdateMicStatusTimer, SPACE);
+
+                if (db > 35) {
+
+                    velocity = -30; //Let's say, 30 units on upward directions
+                    gameState = true;
+                }
+
+
+
+
+            }
+        }
+
+
+    }
+
+
 }
