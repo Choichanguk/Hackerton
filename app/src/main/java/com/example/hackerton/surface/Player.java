@@ -58,7 +58,7 @@ public class Player {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         height = metrics.heightPixels;
         int jumpset = height*1/10;
-        Log.d("점프값","점프셋 값 :" + jumpset);
+        //Log.d("점프값","점프셋 값 :" + jumpset);
 
         for(int i = 10; i < jumpset; i+=10) {
             point.y -= i;
@@ -69,14 +69,28 @@ public class Player {
             }
         }
 
-        for(int i = 10; i < jumpset; i+=10) {
-            point.y += i;
-            try {
-                Thread.sleep(20) ;
-            } catch (Exception e) {
-                e.printStackTrace() ;
-            }
-        }
+//        for(int i = 10; i < jumpset; i+=10) {
+//            point.y += i;
+//            try {
+//                Thread.sleep(20) ;
+//            } catch (Exception e) {
+//                e.printStackTrace() ;
+//            }
+//        }
+
+
+    }
+
+    // 중력 스레드
+    public void downY(Rect surfaceFrame, Context context) {
+
+        int height = 0;
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        height = metrics.heightPixels;
+        int jumpset = height*1/10;
+
+        point.y = point.y + 20; //빠른 속도로 다운이 필요하면 + 값 추가
+
 
 
     }

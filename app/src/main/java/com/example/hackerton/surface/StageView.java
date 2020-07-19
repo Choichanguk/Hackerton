@@ -27,6 +27,8 @@ public class StageView extends SurfaceView implements SurfaceHolder.Callback {
     int width = 0;
     int height = 0;
 
+    int startY = 0;
+
 
     public StageView(Context context) {
         super(context);
@@ -55,8 +57,9 @@ public class StageView extends SurfaceView implements SurfaceHolder.Callback {
         runThread.start();
         player = new Player();
         player.setImage(getResources().getDrawable(R.drawable.run));
-        player.setSize(new Point(200, 200));
-        player.setPoint(new Point(200, height*3/4-100-mouseY));
+        player.setSize(new Point(300, 300));
+        startY = (height*3/4)-100;
+        player.setPoint(new Point(200, startY));
 
     }
 
@@ -115,7 +118,7 @@ public class StageView extends SurfaceView implements SurfaceHolder.Callback {
                 //Log.d("스레드","스레드의 y값 : "+height);
 
                 // Circle 이동
-                x -= 10;
+                x -= 30;
                 //y += 0;
                 canvas.drawColor(Color.WHITE);
                 canvas.drawCircle(x, y, 50, paint);
@@ -131,14 +134,22 @@ public class StageView extends SurfaceView implements SurfaceHolder.Callback {
                 holder.unlockCanvasAndPost(canvas);
                 //Log.d("볼의 좌표 값 point", ""+player.getPoint());
 
-                Log.d("장애물 좌표 값 point", ""+ (y-100));
+                //Log.d("장애물 좌표 값 point", ""+ (y-100));
+                //Log.d("장애물 x 좌표 값 point", ""+ x);
 
 
                 float playYValue = player.getPointY();
-                Log.d("player Y 좌표 값 point", ""+playYValue);
-                if(x == 240){
-                    if(playYValue == (y - 100)){
+                if(playYValue < startY) {
+                    Log.d("y 다운 펑션", "지나감");
+                    player.downY(holder.getSurfaceFrame(), getContext());
+                }
+//                Log.d("player Y 좌표 값 point", ""+playYValue);
+//                Log.d("초기 Y 좌표 값 point", ""+startY);
+                if(x < 430 && x > 390){
+                    //Log.d("x 값 240", "지나감");
+                    if(playYValue >= (y - 250) && playYValue <= (y + 100)){
                         Log.d("좌표값이 같을 때", "있나");
+                        runThread = null;
                         break;
                     }
                 }
