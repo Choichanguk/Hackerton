@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".GameMenuActivity"></activity>
+        <activity android:name=".GameMenuActivity"
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".MediaRecordDemo2"
             android:screenOrientation="landscape" />

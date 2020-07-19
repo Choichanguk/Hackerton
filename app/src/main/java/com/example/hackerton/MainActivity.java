@@ -81,6 +81,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button test7 = findViewById(R.id.gamestart);
+        test7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
+                startActivity(intent);
+            }
+        });
+
         checkSelfPermission();
     }
 
