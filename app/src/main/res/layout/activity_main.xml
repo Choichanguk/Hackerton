@@ -11,7 +11,13 @@
         android:id="@+id/test1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="test1" />
+        android:text="RecordTest1" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RecordTest2" />
 
     <Button
         android:id="@+id/test2"
@@ -30,4 +36,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="sql test" />
+
+
 </LinearLayout>

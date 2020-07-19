@@ -63,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button test5 = findViewById(R.id.button);
+        test5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MediaRecordDemo2.class);
+                startActivity(intent);
+            }
+        });
+
         checkSelfPermission();
     }
 
