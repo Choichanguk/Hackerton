@@ -12,5 +12,9 @@ public class test1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test1);
+
+        MediaRecorderDemo mediaRecorderDemo= new MediaRecorderDemo();
+
+        mediaRecorderDemo.startRecord();
     }
 }
