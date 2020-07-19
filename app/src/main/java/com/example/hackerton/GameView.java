@@ -20,7 +20,7 @@ public class GameView extends View {
     //This is our custom View class
     Handler handler; // Handler is required to schedule a runnable after some delay
     Runnable runnable;
-    final int UPDATE_MILLIS=10;
+    final int UPDATE_MILLIS=20;
     Bitmap background;
     Bitmap toptube, bottomtube;
     Display display;
@@ -196,17 +196,45 @@ public class GameView extends View {
         handler.postDelayed(runnable, UPDATE_MILLIS);
         Log.e("새 x값", String.valueOf(birdX));
         Log.e("새 y값: ", String.valueOf(birdY));
-        Log.e("장애물1 y값", String.valueOf(topTubeY[0]));
-        Log.e("장애물2 y값", String.valueOf(topTubeY[1]));
+//        Log.e("장애물1 y값", String.valueOf(topTubeY[0]));
+//        Log.e("장애물2 y값", String.valueOf(topTubeY[1]));
 //        Log.e("장애물2 x값", String.valueOf(tubeX[1]));
-        Log.e("김동빈", "탑튜브y : "+ String.valueOf(topTubeY[0]));
-        Log.e("김동빈", "디스턴스 : "+String.valueOf(distanceBetweenTubes));
-        Log.e("김동빈", "버드y : "+String.valueOf(birdY));
-        if(tubeX[0] < 450 || tubeX[1] < 450){
-            if(birdY + 508 >=   distanceBetweenTubes + topTubeY[0] || birdY +508  >= distanceBetweenTubes + topTubeY[1]){
+//        Log.e("김동빈", "탑튜브y : "+ String.valueOf(topTubeY[0]));
+//        Log.e("김동빈", "디스턴스 : "+String.valueOf(distanceBetweenTubes));
+//        Log.e("김동빈", "버드y : "+String.valueOf(birdY));
+//        Log.e("김동빈", "전체높이 : "+String.valueOf(dHeight));
+//        Log.e("김동빈", "전체너비 : "+String.valueOf(dWidth));
+        Log.e("김동빈", "튜브 : "+String.valueOf(tubeX[0]));
+        /*if(tubeX[0] < 368 || tubeX[1] < 368){
+            if(birdY > gap + topTubeY[0] || birdY >= gap + topTubeY[1]){
+
+                Log.d("튜브이동","이동함");
+            }
+            tubeX[0] = tubeX[0] + 8;
+            tubeX[1] = tubeX[1] + 8;
+        }*/
+
+        if(tubeX[0] < 368 && tubeX[0] > 168){
+            if(birdY + 480 > gap + topTubeY[0]){
+
+                Log.d("멈춤","1번 부딪힘");
+
                 tubeX[0] = tubeX[0] + 8;
                 tubeX[1] = tubeX[1] + 8;
-                Log.d("튜브이동","이동함");
+
+            }
+
+        }
+
+        if(tubeX[1] < 368 && tubeX[1] > 168){
+
+            if(birdY + 480 > gap + topTubeY[1]){
+
+                Log.d("멈춤","2번 부딪힘");
+
+                tubeX[0] = tubeX[0] + 8;
+                tubeX[1] = tubeX[1] + 8;
+
             }
         }
 
