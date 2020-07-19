@@ -4,6 +4,10 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.concurrent.ExecutionException;
 
 public class LoadSql {
@@ -19,7 +23,7 @@ public class LoadSql {
 
         try {
             GetPost_php task = new GetPost_php(mContext);
-            task.execute("http://b032550c087d.ngrok.io/mysql_android_pushData.php",key,value);
+            task.execute("https://cd3222cd42e5.ngrok.io/hackerton.php",key,value);
 
             String callBackValue = task.get();
 
@@ -28,12 +32,25 @@ public class LoadSql {
             }
             // success
             else {
-                Log.e(TAG, callBackValue);
+                JSONArray jsonArray = null;
+
+                    jsonArray = new JSONArray(callBackValue);
+
+                    for(int i=0; i < jsonArray.length(); i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String id = jsonObject.getString("ID");
+                        String pw = jsonObject.getString("PW");
+                    }
+
+
+
                 // TODO : callBackValue를 이용해서 코드기술
             }
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
