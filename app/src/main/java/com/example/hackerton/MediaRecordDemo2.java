@@ -1,5 +1,7 @@
 package com.example.hackerton;
 
+import android.media.AudioFormat;
+import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,7 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MediaRecordDemo2 extends AppCompatActivity{
-
+    Double Max_DB = 0.0;
 
     TextView mStatusView;
     MediaRecorder mRecorder;
@@ -105,7 +107,10 @@ public class MediaRecordDemo2 extends AppCompatActivity{
     }
 
     public void updateTv(){
-        mStatusView.setText(Double.toString((getAmplitudeEMA())) + " dB");
+        if(Max_DB < getAmplitudeEMA()){
+            Max_DB = getAmplitudeEMA();
+            mStatusView.setText(Double.toString(Max_DB) + " dB");
+        }
 
     }
     public double soundDb(double ampl){
@@ -123,6 +128,5 @@ public class MediaRecordDemo2 extends AppCompatActivity{
         mEMA = EMA_FILTER * amp + (1.0 - EMA_FILTER) * mEMA  ;
         return mEMA;
     }
-
 
 }

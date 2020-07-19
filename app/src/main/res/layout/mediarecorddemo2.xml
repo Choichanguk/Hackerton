@@ -16,6 +16,7 @@
 
         android:text="hello"
 
+        android:textSize="40dp"
         />
 
     <ImageView
