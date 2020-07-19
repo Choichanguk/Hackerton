@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         test1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(), test1.class);
+                Intent intent1 = new Intent(getApplicationContext(), Weightlifting.class);
 
                 startActivity(intent1);
             }

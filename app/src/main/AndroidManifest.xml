@@ -14,10 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".GameActivity"></activity>
-        <activity android:name=".StartGame"></activity>
-        <activity android:name=".GameMenuActivity"
-            android:screenOrientation="landscape"></activity>
+        <activity android:name=".Weightlifting"
+            android:screenOrientation="landscape" ></activity>
+        <activity android:name=".GameActivity" />
+        <activity android:name=".StartGame" />
+        <activity
+            android:name=".GameMenuActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".MediaRecordDemo2"
             android:screenOrientation="landscape" />
