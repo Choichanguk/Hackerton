@@ -18,9 +18,7 @@
         <activity android:name=".test3" />
         <activity android:name=".test1" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MediaRecordDemo2"/>
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
