@@ -106,6 +106,7 @@ public class MediaRecordDemo2 extends AppCompatActivity{
 
     public void updateTv(){
         mStatusView.setText(Double.toString((getAmplitudeEMA())) + " dB");
+
     }
     public double soundDb(double ampl){
         return  20 * Math.log10(getAmplitudeEMA() / ampl);
@@ -119,7 +120,7 @@ public class MediaRecordDemo2 extends AppCompatActivity{
     }
     public double getAmplitudeEMA() {
         double amp =  getAmplitude();
-        mEMA = EMA_FILTER * amp + (1.0 - EMA_FILTER) * mEMA;
+        mEMA = EMA_FILTER * amp + (1.0 - EMA_FILTER) * mEMA  ;
         return mEMA;
     }
 
