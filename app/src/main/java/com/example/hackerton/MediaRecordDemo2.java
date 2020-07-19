@@ -42,7 +42,7 @@ public class MediaRecordDemo2 extends AppCompatActivity{
                     {
                         try
                         {
-                            Thread.sleep(1000);
+                            Thread.sleep(500);
                             Log.i("Noise", "Tock");
                         } catch (InterruptedException e) { };
                         mHandler.post(updater);
