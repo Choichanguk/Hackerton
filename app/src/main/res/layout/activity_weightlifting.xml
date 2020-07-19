@@ -5,16 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fl"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/goodjob">
 
     <TextView
         android:id="@+id/clock"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="290dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="00:00:00"
         android:textSize="35dp"
         android:textStyle="bold" />
+
+
 
     <Button
         android:id="@+id/start_click_button"
