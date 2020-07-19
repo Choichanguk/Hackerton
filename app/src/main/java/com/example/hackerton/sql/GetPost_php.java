@@ -44,6 +44,7 @@ public class GetPost_php extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
 
+
         // POST 방식으로 데이터 전달시에는 데이터가 주소에 직접 입력되지 않습니다.
         String serverURL = (String) params[0];
         String key = (String) params[1];

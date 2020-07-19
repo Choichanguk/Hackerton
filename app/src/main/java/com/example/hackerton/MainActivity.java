@@ -72,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button test6 = findViewById(R.id.login_btn);
+        test6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
         checkSelfPermission();
     }
 
