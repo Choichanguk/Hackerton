@@ -57,7 +57,7 @@ public class Player {
         int height = 0;
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         height = metrics.heightPixels;
-        int jumpset = height*1/10;
+        int jumpset = height*1/30;
         //Log.d("점프값","점프셋 값 :" + jumpset);
 
         for(int i = 10; i < jumpset; i+=10) {
