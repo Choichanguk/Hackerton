@@ -57,17 +57,19 @@ public class Player {
         int height = 0;
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         height = metrics.heightPixels;
-        int jumpset = height*1/30;
-        //Log.d("점프값","점프셋 값 :" + jumpset);
+        int jumpset = height*1/4;
+        Log.d("점프값","점프셋 값 :" + jumpset);
 
-        for(int i = 10; i < jumpset; i+=10) {
-            point.y -= i;
-            try {
-                Thread.sleep(20) ;
-            } catch (Exception e) {
-                e.printStackTrace() ;
-            }
-        }
+        point.y -= jumpset;
+
+//        for(int i = 10; i < jumpset; i+=10) {
+//            point.y -= i;
+//            try {
+//                Thread.sleep(20) ;
+//            } catch (Exception e) {
+//                e.printStackTrace() ;
+//            }
+//        }
 
 //        for(int i = 10; i < jumpset; i+=10) {
 //            point.y += i;
@@ -94,4 +96,8 @@ public class Player {
 
 
     }
+
+
+
+
 }
