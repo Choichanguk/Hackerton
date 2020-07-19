@@ -14,20 +14,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".GameMenuActivity"></activity>
         <activity
             android:name=".MediaRecordDemo2"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".test2"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name=".test3"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".test1"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".LoginActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".RegisterActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".MainActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".test2"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".test3"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".test1"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
