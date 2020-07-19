@@ -14,6 +14,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        MediaRecorderDemo mediaRecorderDemo= new MediaRecorderDemo();
+
+        /*mediaRecorderDemo.startRecord();*/
+
+
         Button test1 = findViewById(R.id.test1);
         test1.setOnClickListener(new View.OnClickListener() {
             @Override
