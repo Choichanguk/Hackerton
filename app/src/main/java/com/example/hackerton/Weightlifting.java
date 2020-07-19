@@ -16,7 +16,7 @@ import android.widget.TextView;
 import java.io.File;
 import java.io.IOException;
 
-public class Weightlifting extends AppCompatActivity implements Runnable {
+public class Weightlifting extends AppCompatActivity  {
 
     Button start_click_button;
 
@@ -25,7 +25,8 @@ public class Weightlifting extends AppCompatActivity implements Runnable {
     게임 종료와 관련되어 있는 변수이다.
     */
     boolean game = true;
-
+    boolean end = true;
+//    int i = 0;
 
     /*
     게임 플레이 제한시간과 관련되어 있는 변수입니다.
@@ -50,12 +51,14 @@ public class Weightlifting extends AppCompatActivity implements Runnable {
     */
     ProgressBar pgb;
 
+    String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weightlifting);
 
+        clock_text = findViewById(R.id.clock);
 
         pgb = findViewById(R.id.progressbar);
 
@@ -74,87 +77,158 @@ public class Weightlifting extends AppCompatActivity implements Runnable {
 
                         start_click_button.setVisibility(View.GONE);
 
-                        Thread t = new Thread(Weightlifting.this);
+                        thread t = new thread();
                         t.start();
                     }
                 }
         );
 
     }
+    public class thread extends Thread{
+        @Override
+        public void run() {
 
-    @Override
-    public void run() {
 
+            imageview = (ImageView) findViewById(R.id.ready_motion);
+            int i=0;
+            while (game) {
 
-        imageview = (ImageView) findViewById(R.id.ready_motion);
+                loop1:while (clock != 0) {
+//                Message msg = new Message();
+//                msg.arg1 = i++;
+//                mHandler.sendMessage(msg);
+                    if(click > 96){
+                        Log.e("break", "break");
+                        break loop1;
+                    }
 
-        while (game) {
-            while (clock != 0) {
-                if(click > 96){
-                    break;
-                }
             /*
             시간이 10초~ 감소될 수 있게 적용되는 소스이다.
             */
-                if (clock_decrease == 600) {
-                    clock_decrease = 0;
-                    clock--;
-                    mHandler.sendEmptyMessage(0);
-                }
-                if (clock_decrease != 600) {
-                    clock_decrease++;
+//                if (clock_decrease == 600) {
+//                    clock_decrease = 0;
+//                    clock--;
+//                    Message msg = new Message();
+//                    msg.arg1 = i++;
+//                    msg.what = 0;
+//                    mHandler.sendMessage(msg);
+//                }
+//                if (clock_decrease != 600) {
+//                    clock_decrease++;
+//                }
+
+
+
+                    if (click < 10) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 2;
+                        mHandler.sendMessage(msg);
+
+                    } else if (click > 10 && click <= 20) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 3;
+                        mHandler.sendMessage(msg);
+
+                    } else if (click > 20 && click <= 30) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 4;
+                        mHandler.sendMessage(msg);
+
+                    } else if (click > 30 && click <= 40) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 5;
+                        mHandler.sendMessage(msg);
+
+                    } else if (click > 40 && click <= 50) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 6;
+                        mHandler.sendMessage(msg);
+
+                    } else if (click > 50 && click <= 60) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 7;
+                        mHandler.sendMessage(msg);
+
+                    } else if (click > 60 && click <= 70) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 8;
+                        mHandler.sendMessage(msg);
+
+                    } else if (click > 70 && click <= 80) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 9;
+                        mHandler.sendMessage(msg);
+
+                    } else if (click > 80 && click <= 90) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 10;
+                        mHandler.sendMessage(msg);
+
+                    } else if (click > 90 && click <= 92) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 11;
+                        mHandler.sendMessage(msg);
+
+                    } else if (click > 92 && click <= 95) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 12;
+                        mHandler.sendMessage(msg);
+
+                    } else if (click > 95) {
+                        Message msg = new Message();
+                        msg.arg1 = i++;
+                        msg.what = 13;
+                        mHandler.sendMessage(msg);
+
+                    }
+                    try {
+                        Thread.sleep(10);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
 
-                if (click < 10) {
-                    mHandler.sendEmptyMessage(2);
-                } else if (click > 10 && click <= 20) {
-                    mHandler.sendEmptyMessage(3);
-                } else if (click > 20 && click <= 30) {
-                    mHandler.sendEmptyMessage(4);
-                } else if (click > 30 && click <= 40) {
-                    mHandler.sendEmptyMessage(5);
-                } else if (click > 40 && click <= 50) {
-                    mHandler.sendEmptyMessage(6);
-                } else if (click > 50 && click <= 60) {
-                    mHandler.sendEmptyMessage(7);
-                } else if (click > 60 && click <= 70) {
-                    mHandler.sendEmptyMessage(8);
-                } else if (click > 70 && click <= 80) {
-                    mHandler.sendEmptyMessage(9);
-                } else if (click > 80 && click <= 90) {
-                    mHandler.sendEmptyMessage(10);
-                } else if (click > 90 && click <= 92) {
-                    mHandler.sendEmptyMessage(11);
-                } else if (click > 92 && click <= 95) {
-                    mHandler.sendEmptyMessage(12);
-                } else if (click > 95) {
-                    mHandler.sendEmptyMessage(13);
-                }
+                Message msg = new Message();
+                msg.arg1 = i++;
+                msg.what = 14;
+                mHandler.sendMessage(msg);
+                game = false;
+
                 try {
-                    Thread.sleep(1);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            mHandler.sendEmptyMessage(14);
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
-
 
     /*
     Handler 작업
      */
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
+            int mSec = msg.arg1 % 100;
+            int sec = (msg.arg1 / 100) % 60;
+            int min = (msg.arg1 / 100) / 60;
+            result = String.format("%02d:%02d:%02d",  min, sec, mSec);
+            clock_text.setText(result);
+//            Log.e("result", "result: " + result);
             if (msg.what == 0) {
                 clock_text = (TextView) findViewById(R.id.clock);
                 imageview.setImageResource(R.drawable.a01);
-                clock_text.setText("" + clock);
             }
             if (msg.what == 2) {
                 imageview.setImageResource(R.drawable.a01);
@@ -191,16 +265,22 @@ public class Weightlifting extends AppCompatActivity implements Runnable {
             }
             if (msg.what == 13) {
                 imageview.setImageResource(R.drawable.a12);
+
             }
             if (msg.what == 14) {
+                imageview.setImageResource(R.drawable.a12);
+                end = false;
                 start_click_button.setVisibility(View.VISIBLE);
                 start_click_button.setOnClickListener(
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                end = true;
                                 start_click_button.setVisibility(View.GONE);
-                                clock = 20;
                                 click = 0;
+                                game = true;
+                                thread t = new thread();
+                                t.start();
                             }
                         }
                 );
@@ -317,7 +397,14 @@ public class Weightlifting extends AppCompatActivity implements Runnable {
                     click++;
                     click++;
                     click++;
+                }else if (db <= 38){
+                    if(end){
+                        click--;
+                    }
+
                 }
+
+
 
                 pgb.setProgress((int) db * 2);
 
