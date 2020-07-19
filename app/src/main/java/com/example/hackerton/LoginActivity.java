@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                 boolean can_login = false;
 
                 LoadSql loadSql = new LoadSql(LoginActivity.this);
-                can_login = loadSql.certificate_input_info(URL, input_id, input_pw);
+                can_login = loadSql.certificate_login_info(URL, input_id, input_pw);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
 
