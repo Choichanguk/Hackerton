@@ -29,7 +29,7 @@ public class MediaRecordDemo2 extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.mediarecorddemo2);
 
         mStatusView = (TextView) findViewById(R.id.status);
 
