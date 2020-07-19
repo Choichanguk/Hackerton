@@ -16,5 +16,6 @@ public class test1 extends AppCompatActivity {
         MediaRecorderDemo mediaRecorderDemo= new MediaRecorderDemo();
 
         mediaRecorderDemo.startRecord();
+
     }
 }

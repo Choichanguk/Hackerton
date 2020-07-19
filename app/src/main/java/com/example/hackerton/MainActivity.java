@@ -75,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
             temp += Manifest.permission.RECORD_AUDIO + " ";
         }
 
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            temp += Manifest.permission.WRITE_EXTERNAL_STORAGE + " ";
+        }
+
         if (TextUtils.isEmpty(temp) == false) {
             // 권한 요청
             ActivityCompat.requestPermissions(this, temp.trim().split(" "), 1);
