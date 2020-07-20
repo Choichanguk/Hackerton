@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Handler;
 import android.util.Log;
@@ -293,10 +294,18 @@ public class GameView extends View {
         handler.postDelayed(runnable, UPDATE_MILLIS);
     }
 
+    private static MediaPlayer mp;
+
+
     //게임종료
     private void gameOver() {
         isAlive = false; //생존여부 false
         mediaRecorderDemo.stopRecord(); //녹음중지
+        mp = MediaPlayer.create(getContext(), R.raw.gameover);
+
+        mp.setLooping(false);
+
+        mp.start();
         showScoreDialog(); //점수판 출력
     }
 
