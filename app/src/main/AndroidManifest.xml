@@ -29,7 +29,7 @@
             android:name=".StartGame"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".GameMenuActivity"
+            android:name=".MainActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".MediaRecordDemo2"
@@ -50,7 +50,7 @@
             android:name=".RegisterActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MainActivity"
+            android:name=".GameMenuActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
