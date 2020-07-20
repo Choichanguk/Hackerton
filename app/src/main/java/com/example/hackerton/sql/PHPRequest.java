@@ -18,31 +18,26 @@ import java.net.URL;
 
 public class PHPRequest extends Thread{
     String ID, PW, category1, record;
+    private URL url;
 
     @Override
     public void run() {
         super.run();
         if(TextUtils.isEmpty(record)){
+
             push_userInfo(ID, PW, category1);
+            Log.e("PHPRequest: ", "push_userInfo 실행");
+            Log.e("PHPRequest: ", ID);
+            Log.e("PHPRequest: ", PW);
+            Log.e("PHPRequest: ", category1);
         }
-        {
+        else {
             push_userRecord(ID, record);
+            Log.e("PHPRequest: ", "push_userRecord 실행");
         }
 
 
     }
-
-    private URL url;
-
-    /**
-     * 정보를 넘겨주기 위한 php파일로 접근하는 url
-     * @param url
-     * 아이디 생성 시 기본적으로 저장되는 정보
-     * @param ID
-     * @param PW
-     * @param category1
-     * @throws MalformedURLException
-     */
 
     /**
      *  새 아이디 서버에 저장할 때 불러지는 생성자
@@ -104,6 +99,7 @@ public class PHPRequest extends Thread{
             conn.setDoOutput(true);     // 만약 request body를 포함한다면, true값으로 설정해주어야 한다.
             conn.setDoInput(true);
 
+            Log.e("PHPRequest", "result");
             OutputStream outputStream = conn.getOutputStream();     //outputStream 객체에 write를 함으로써 데이터를 전송한다.
             outputStream.write(postData.getBytes("UTF-8"));
 
@@ -115,6 +111,7 @@ public class PHPRequest extends Thread{
 
             String result = readStream(conn.getInputStream());
             conn.disconnect();
+            Log.e("PHPRequest", result);
             return result;
         }
         catch (Exception e) {

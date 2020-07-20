@@ -45,28 +45,48 @@ public class GetPost_php extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
 
 
+
         // POST 방식으로 데이터 전달시에는 데이터가 주소에 직접 입력되지 않습니다.
-        String serverURL = (String) params[0];
-        String key = (String) params[1];
-        String value = (String) params[2];
-//        String key1 = (String) params[3];
-//        String value1 = (String) params[4];
+        String postParameters;
+        String serverURL;
+        if(params.length == 3){
+            serverURL = (String) params[0];
+            String key = (String) params[1];
+            String value = (String) params[2];
+            Log.e("serverURL: ", serverURL);
+            Log.e("key: ", key);
+            Log.e("value: ", value);
+            postParameters = key + "=" + value;
+            Log.e(TAG, postParameters);
+        }
+        else {
+            serverURL = (String) params[0];
+            String key = (String) params[1];
+            String value = (String) params[2];
+            String key1 = (String) params[3];
+            String value1 = (String) params[4];
+
+            Log.e("serverURL: ", serverURL);
+//            Log.e("key: ", key);
+//            Log.e("value: ", value);
+            postParameters = key + "=" + value + "&" + key1 + "=" + value1;
+            Log.e(TAG, postParameters);
+        }
+
+
 
 
         // TODO : 아래 형식처럼 원하는 key과 value를 계속 추가시킬수있다.
         // 1. PHP 파일을 실행시킬 수 있는 주소와 전송할 데이터를 준비합니다.
 //        column = (String) params[2];
-        Log.e("serverURL: ", serverURL);
-        Log.e("key: ", key);
-        Log.e("value: ", value);
+
 
         // HTTP 메시지 본문에 포함되어 전송되기 때문에 따로 데이터를 준비해야 합니다.
         // 전송할 데이터는 “이름=값” 형식이며 여러 개를 보내야 할 경우에는 항목 사이에 &를 추가합니다.
         // 여기에 적어준 이름을 나중에 PHP에서 사용하여 값을 얻게 됩니다.
 
         // TODO : 위에 추가한 형식처럼 아래 postParameters에 key과 value를 계속 추가시키면 끝이다.
-        // ex : String postParameters = "name=" + name + "&country=" + country;
-        String postParameters = key + "=" + value;
+
 
         Log.d(TAG, postParameters);
 

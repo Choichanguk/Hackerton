@@ -189,12 +189,17 @@ public class LoadSql {
      *
      */
     public void save_usr_info_to_server(String user_id, String user_pw) throws MalformedURLException {
-        PHPRequest request = new PHPRequest(URL1, user_id, user_pw, "기본");
-        request.start();
-        try {
-            request.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        GetPost_php task = new GetPost_php(mContext);
+        task.execute(URL1,"ID",user_id, "PW", user_pw);
+
+//        PHPRequest request = new PHPRequest(URL1, user_id, user_pw, "기본");
+//        request.start();
+//        try {
+//            request.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+
     }
 }
