@@ -1,10 +1,14 @@
 package com.example.hackerton;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.MediaRecorder;
@@ -45,12 +49,14 @@ public class GameView extends View {
     int[] tubeX = new int[numberOfTubes];
     int[] topTubeY = new int[numberOfTubes];
     Random random;
-    int tubeVelocity = 25;
+    int tubeVelocity = 25; //가속도
+    int score = 0; //점수
+    private Paint textPaint; //점수판 페인트
+    private boolean isAlive = true; //생존여부
+    int count = 0; //
+    int drawCount = 1; //
 
     MediaRecorderDemo mediaRecorderDemo = new MediaRecorderDemo();
-
-
-
 
     public GameView(Context context) {
         super(context);
@@ -96,7 +102,10 @@ public class GameView extends View {
         birds[19] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion20);
         birds[20] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion21);
 
-
+        textPaint = new Paint();
+        textPaint.setColor(Color.WHITE);
+        textPaint.setStyle(Paint.Style.FILL);
+        textPaint.setTextSize(200);
 
         birdX = dWidth/5 - birds[0].getWidth()/2; // Initially bird will be on centre
         birdY = dHeight/2 - birds[0].getHeight()/2;
@@ -118,6 +127,83 @@ public class GameView extends View {
         //We'll draw our view inside onDraw
         //Draw ths background on canvas
         //canvas.drawBitmap(background, 0, 0, null);
+
+        Log.e("새 x값", String.valueOf(birdX));
+        Log.e("새 y값: ", String.valueOf(birdY));
+//        Log.e("장애물1 y값", String.valueOf(topTubeY[0]));
+//        Log.e("장애물2 y값", String.valueOf(topTubeY[1]));
+//        Log.e("장애물2 x값", String.valueOf(tubeX[1]));
+//        Log.e("김동빈", "탑튜브y : "+ String.valueOf(topTubeY[0]));
+//        Log.e("김동빈", "디스턴스 : "+String.valueOf(distanceBetweenTubes));
+//        Log.e("김동빈", "버드y : "+String.valueOf(birdY));
+//        Log.e("김동빈", "전체높이 : "+String.valueOf(dHeight));
+//        Log.e("김동빈", "전체너비 : "+String.valueOf(dWidth));
+        Log.e("김동빈", "튜브 : "+String.valueOf(tubeX[0]));
+        /*if(tubeX[0] < 368 || tubeX[1] < 368){
+            if(birdY > gap + topTubeY[0] || birdY >= gap + topTubeY[1]){
+
+                Log.d("튜브이동","이동함");
+            }
+            tubeX[0] = tubeX[0] + 8;
+            tubeX[1] = tubeX[1] + 8;
+        }*/
+
+        if(isAlive)
+        {
+            int a = drawCount / 14;
+            count++;
+            if(count == 50)
+            {
+                count = 0;
+                score++;
+                tubeVelocity += a;
+            }
+            updatePosition(canvas);
+            checkCollision(); //충돌여부
+        }
+
+        canvas.drawText("Score: " + score, 1000, 200, textPaint); //점수판 그리기
+    }
+
+    private void checkCollision()
+    {
+        if(tubeX[0] < 368 && tubeX[0] > 168){
+            if(birdY + 480 > gap + topTubeY[0]){
+
+                Log.d("멈춤","1번 부딪힘");
+
+                tubeX[0] = tubeX[0] + 25;
+                tubeX[1] = tubeX[1] + 25;
+                gameOver();
+            }
+            else
+            {
+                drawCount++;
+                //tubeVelocity++;
+            }
+
+        }
+
+        if(tubeX[1] < 368 && tubeX[1] > 168){
+
+            if(birdY + 480 > gap + topTubeY[1]){
+
+                Log.d("멈춤","2번 부딪힘");
+
+                tubeX[0] = tubeX[0] + 25;
+                tubeX[1] = tubeX[1] + 25;
+                gameOver();
+            }
+            else
+            {
+                drawCount++;
+                //tubeVelocity++;
+            }
+        }
+    }
+
+    private void updatePosition(Canvas canvas)
+    {
         canvas.drawBitmap(background, null, rect, null);    //fixed
         if(birdFrame == 0){
             birdFrame = 1;
@@ -183,7 +269,6 @@ public class GameView extends View {
         }
 
 
-
         if(gameState) {
             //The bird should be on the screen
             if (birdY < dHeight - birds[0].getHeight() || velocity < 0) { //This way bird does not go beyond the bottom edge of the screen
@@ -192,7 +277,7 @@ public class GameView extends View {
             }
             for(int i=0; i<numberOfTubes; i++) {
                 tubeX[i] -= tubeVelocity;
-                if(tubeX[i] < -toptube.getWidth()){
+                if(tubeX[i] < -bottomtube.getWidth()){
                     tubeX[i] += numberOfTubes * distanceBetweenTubes ;
                     topTubeY[i] = minTubeOffset + random.nextInt(maxTubeOffset - minTubeOffset + 1);
                 }
@@ -204,51 +289,44 @@ public class GameView extends View {
         //Both birds[0] and birds[1] have same dimension
         canvas.drawBitmap(birds[birdFrame], birdX, birdY, null);
         handler.postDelayed(runnable, UPDATE_MILLIS);
-        Log.e("새 x값", String.valueOf(birdX));
-        Log.e("새 y값: ", String.valueOf(birdY));
-//        Log.e("장애물1 y값", String.valueOf(topTubeY[0]));
-//        Log.e("장애물2 y값", String.valueOf(topTubeY[1]));
-//        Log.e("장애물2 x값", String.valueOf(tubeX[1]));
-//        Log.e("김동빈", "탑튜브y : "+ String.valueOf(topTubeY[0]));
-//        Log.e("김동빈", "디스턴스 : "+String.valueOf(distanceBetweenTubes));
-//        Log.e("김동빈", "버드y : "+String.valueOf(birdY));
-//        Log.e("김동빈", "전체높이 : "+String.valueOf(dHeight));
-//        Log.e("김동빈", "전체너비 : "+String.valueOf(dWidth));
-        Log.e("김동빈", "튜브 : "+String.valueOf(tubeX[0]));
-        /*if(tubeX[0] < 368 || tubeX[1] < 368){
-            if(birdY > gap + topTubeY[0] || birdY >= gap + topTubeY[1]){
+    }
 
-                Log.d("튜브이동","이동함");
-            }
-            tubeX[0] = tubeX[0] + 8;
-            tubeX[1] = tubeX[1] + 8;
-        }*/
+    //게임종료
+    private void gameOver() {
+        isAlive = false; //생존여부 false
+        mediaRecorderDemo.stopRecord(); //녹음중지
+        showScoreDialog(); //점수판 출력
+    }
 
-        if(tubeX[0] < 368 && tubeX[0] > 168){
-            if(birdY + 480 > gap + topTubeY[0]){
+    private void showScoreDialog() {
 
-                Log.d("멈춤","1번 부딪힘");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
 
-                tubeX[0] = tubeX[0] + 25;
-                tubeX[1] = tubeX[1] + 25;
+        builder.setMessage("Your score was: " + score).setTitle(
+                "Game over!");
 
-            }
+        builder.setPositiveButton("Play Again",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        isAlive = true;
+                        resetGameState();
+                        dialog.dismiss();
+                    }
+                });
 
-        }
+        AlertDialog dialog = builder.create();
 
-        if(tubeX[1] < 368 && tubeX[1] > 168){
-
-            if(birdY + 480 > gap + topTubeY[1]){
-
-                Log.d("멈춤","2번 부딪힘");
-
-                tubeX[0] = tubeX[0] + 25;
-                tubeX[1] = tubeX[1] + 25;
-
-            }
-        }
+        dialog.show();
 
     }
+
+    private void resetGameState() {
+        isAlive = true;
+        score = 0;
+
+    }
+
+
     //Get the touch event
 
     @Override
