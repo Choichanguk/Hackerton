@@ -46,7 +46,7 @@ public class GameView extends View {
     int velocity=50, gravity=10; // Let's play around with these values
     //We need to keep track of bird position
     int birdX, birdY;
-    boolean gameState = false;
+    boolean gameState = true;
     int gap = 400; //Gap between top tube and bottom tube
     int minTubeOffset, maxTubeOffset;
     int numberOfTubes = 2;
