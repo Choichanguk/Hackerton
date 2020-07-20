@@ -304,10 +304,10 @@ public class GameView extends View {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
 
-        builder.setMessage("Your score was: " + score).setTitle(
-                "Game over!");
+        builder.setMessage("당신의 게임 점수: " + score).setTitle(
+                "게임 종료");
 
-        builder.setPositiveButton("Play Again",
+        builder.setPositiveButton("다시 시작",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         isAlive = true;
@@ -316,7 +316,7 @@ public class GameView extends View {
                     }
                 });
 
-        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("종료", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
