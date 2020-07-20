@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -163,6 +164,7 @@ public class GameView extends View {
         }
 
         canvas.drawText("Score: " + score, 1000, 200, textPaint); //점수판 그리기
+        invalidate();
     }
 
     private void checkCollision()
@@ -314,6 +316,15 @@ public class GameView extends View {
                     }
                 });
 
+        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Intent intent = new Intent(getContext() ,GameMenuActivity.class);
+                getContext().startActivity(intent);
+            }
+        });
+
         AlertDialog dialog = builder.create();
 
         dialog.show();
@@ -323,6 +334,70 @@ public class GameView extends View {
     private void resetGameState() {
         isAlive = true;
         score = 0;
+        count = 0; //
+        drawCount = 1;
+        tubeVelocity = 25; //가속도
+        gap = 400; //Gap between top tube and bottom tube
+        birdFrame=0;
+        velocity=50;
+        gravity=10;
+
+        mediaRecorderDemo.startRecord();
+
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                invalidate(); //this will call onDraw();
+            }
+        };
+        background = BitmapFactory.decodeResource(getResources(), R.drawable.base);
+        toptube = BitmapFactory.decodeResource(getResources(), R.drawable.toptube);
+        bottomtube = BitmapFactory.decodeResource(getResources(), R.drawable.obstacle);
+        display = ((Activity)getContext()).getWindowManager().getDefaultDisplay();
+        point = new Point();
+        display.getSize(point);
+        dWidth = point.x;
+        dHeight = point.y;
+        rect = new Rect(0, 0, dWidth, dHeight);
+        birds = new Bitmap[21];
+        birds[0] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion1);
+        birds[1] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion2);
+        birds[2] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion3);
+        birds[3] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion4);
+        birds[4] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion5);
+        birds[5] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion6);
+        birds[6] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion7);
+        birds[7] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion8);
+        birds[8] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion9);
+        birds[9] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion10);
+        birds[10] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion11);
+        birds[11] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion12);
+        birds[12] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion13);
+        birds[13] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion14);
+        birds[14] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion15);
+        birds[15] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion16);
+        birds[16] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion17);
+        birds[17] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion18);
+        birds[18] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion19);
+        birds[19] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion20);
+        birds[20] = BitmapFactory.decodeResource(getResources(), R.drawable.runmotion21);
+
+        textPaint = new Paint();
+        textPaint.setColor(Color.WHITE);
+        textPaint.setStyle(Paint.Style.FILL);
+        textPaint.setTextSize(200);
+
+        birdX = dWidth/5 - birds[0].getWidth()/2; // Initially bird will be on centre
+        birdY = dHeight/2 - birds[0].getHeight()/2;
+        distanceBetweenTubes = dWidth*3/4;  //Our assumption
+        minTubeOffset = gap/2;
+        maxTubeOffset = dHeight - minTubeOffset - gap;
+        random = new Random();
+        for(int i=0; i<numberOfTubes; i++){
+            tubeX[i] = dWidth + i*distanceBetweenTubes;
+            topTubeY[i] = minTubeOffset + random.nextInt(maxTubeOffset - minTubeOffset + 1);
+        }
 
     }
 

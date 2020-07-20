@@ -1,47 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fl"
-    tools:context=".MainActivity"
-    android:background="@drawable/goodjob">
+    android:background="@drawable/goodjob"
+    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="진도율:" />
     <TextView
         android:id="@+id/percent_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:text="0%"
         android:textSize="25dp"
-        android:text="0%" />
+        app:layout_constraintStart_toEndOf="@+id/percent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/clock"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="290dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="00:00:00"
         android:textSize="35dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="20dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginRight="84dp"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/customprogressbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/start_click_button"
+        android:layout_width="137dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="40dp"
+        android:text="시작"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fl"
+        app:layout_constraintHorizontal_bias="0.603"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
-        android:layout_marginLeft="320dp"
-        android:text="시작" />
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="진도율:"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="339dp"
+        android:layout_height="309dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clock"
+        app:layout_constraintVertical_bias="0.164">
+
+        <ImageView
+            android:id="@+id/ready_motion"
+            android:layout_width="339dp"
+            android:layout_height="298dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/a01"
+            tools:ignore="VectorDrawableCompat" />
+    </FrameLayout>
+
+
     <!--
         <Button
             android:id="@+id/right_click_button"
@@ -51,23 +103,4 @@
             android:layout_marginLeft="150dp"
             android:text="Button" />-->
 
-    <ImageView
-        android:id="@+id/ready_motion"
-        android:layout_marginTop="10dp"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/a01"
-        tools:ignore="VectorDrawableCompat" />
-
-    <ProgressBar
-        android:id="@+id/progressbar"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="450dp"
-        android:layout_marginTop="170dp"
-        android:max="100"
-        android:progress="0"
-        android:rotation="270" />
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
