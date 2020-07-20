@@ -59,7 +59,12 @@ public class Hurdle_Record_Adepter extends RecyclerView.Adapter<Hurdle_Record_Ad
     @Override
     public void onBindViewHolder(@NonNull Hurdle_Record_Adepter.ViewHolder holder, int position) {
         Hurdle_Record_Box item = items.get(position);
+        item.setRanking(position+1);
+        holder.rankNo.setText(""+(position+1));
+        holder.rankId.setText(item.getId());
+        holder.rankRecord.setText(item.getScore());
         holder.setItem(item);
+
     }
 
     @Override

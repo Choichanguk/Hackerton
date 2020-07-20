@@ -59,6 +59,9 @@ public class Weightlifting_Record_Adepter extends RecyclerView.Adapter<Weightlif
     @Override
     public void onBindViewHolder(@NonNull Weightlifting_Record_Adepter.ViewHolder holder, int position) {
         Weightlifting_Record_Box item = items.get(position);
+        holder.rankNo.setText(""+(position+1));
+        holder.rankId.setText(item.getId());
+        holder.rankRecord.setText(item.getScore());
         holder.setItem(item);
     }
 

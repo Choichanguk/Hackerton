@@ -73,6 +73,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/WL_recycler"
         android:layout_width="500dp"
         android:layout_height="170dp"
         android:layout_gravity="center">

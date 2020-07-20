@@ -71,6 +71,7 @@
             android:text="기록" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hurdle_recycler"
         android:layout_width="500dp"
         android:layout_height="170dp"
         android:layout_gravity="center">

@@ -23,8 +23,8 @@ public class Weightlifting_Record_Box implements Serializable {
         this.score = score;
     }
 
-    public Weightlifting_Record_Box(String id, String score) {
-        this.id = id;
-        this.score = score;
-    }
+//    public Weightlifting_Record_Box(String id, String score) {
+//        this.id = id;
+//        this.score = score;
+//    }
 }

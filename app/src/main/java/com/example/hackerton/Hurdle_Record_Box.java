@@ -6,6 +6,15 @@ public class Hurdle_Record_Box implements Serializable {
 
     String id;
     String score;
+    int ranking;
+
+    public int getRanking() {
+        return this.ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
+    }
 
     public String getId() {
         return id;
@@ -23,8 +32,8 @@ public class Hurdle_Record_Box implements Serializable {
         this.score = score;
     }
 
-    public Hurdle_Record_Box(String id, String score) {
-        this.id = id;
-        this.score = score;
-    }
+//    public Hurdle_Record_Box(String id, String score) {
+//        this.id = id;
+//        this.score = score;
+//    }
 }

@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.e("Main", "click");
                 LoadSql loadSql = new LoadSql(MainActivity.this);
-                loadSql.get_all_record("https://4559a5a3a334.ngrok.io/hackerton_record.php", "hurdle");
+                loadSql.get_hurdle_record("https://4559a5a3a334.ngrok.io/hackerton_record.php", "hurdle");
             }
         });
 
