@@ -31,7 +31,7 @@ public class Ranking_Weightlifting extends AppCompatActivity {
         SharedClass sharedClass = new SharedClass();
         user_id = sharedClass.loadUserId(getApplicationContext());
         Log.e("user_id: ", user_id);
-        user_id = "test3";
+//        user_id = "test3";
 
 
 

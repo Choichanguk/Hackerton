@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutionException;
 public class LoadSql {
     private static final String TAG = "LoadSql";
     private static final String URL = "http://4f11ce3a7f3c.ngrok.io/hackerton.php";
-    private static final String URL1 = "http://4f11ce3a7f3c.ngrok.io/hackerton_save.php";   // 서버로 유저 정보, 기록 저장시킬때 사용하는 URL
+    private static final String URL1 = "http://4559a5a3a334.ngrok.io/hackerton_save.php";   // 서버로 유저 정보, 기록 저장시킬때 사용하는 URL
 
     Context mContext = null;
 
@@ -290,6 +290,12 @@ public class LoadSql {
         }
 
         return WL_item;
+    }
+
+    public void save_record_to_server(String url, String what, String user_id, String s_key ,String score) throws MalformedURLException {
+        GetPost_php task = new GetPost_php(mContext);
+        task.execute(url, "ID", user_id, "what" ,what, s_key, score);
+
     }
 
 

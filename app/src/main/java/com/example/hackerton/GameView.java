@@ -20,8 +20,11 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.hackerton.sql.LoadSql;
+
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Random;
 
 public class GameView extends View {
@@ -161,15 +164,18 @@ public class GameView extends View {
                 tubeVelocity += a;
             }
             updatePosition(canvas);
-            checkCollision(); //충돌여부
+            try {
+                checkCollision(); //충돌여부
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
 
         canvas.drawText("Score: " + score, 1000, 200, textPaint); //점수판 그리기
         invalidate();
     }
 
-    private void checkCollision()
-    {
+    private void checkCollision() throws MalformedURLException {
         if(tubeX[0] < 368 && tubeX[0] > 168){
             if(birdY + 480 > gap + topTubeY[0]){
 
@@ -298,7 +304,7 @@ public class GameView extends View {
 
 
     //게임종료
-    private void gameOver() {
+    private void gameOver() throws MalformedURLException {
         isAlive = false; //생존여부 false
         mediaRecorderDemo.stopRecord(); //녹음중지
         mp = MediaPlayer.create(getContext(), R.raw.gameover);
@@ -306,7 +312,21 @@ public class GameView extends View {
         mp.setLooping(false);
 
         mp.start();
+
         showScoreDialog(); //점수판 출력
+        SharedClass sharedClass = new SharedClass();
+        String user_id = sharedClass.loadUserId(getContext());
+
+        Log.e("gameover score: ", String.valueOf(score));
+        Log.e("user_id: ", user_id);
+        LoadSql loadSql = new LoadSql(getContext());
+
+        try {
+            loadSql.save_record_to_server("https://4559a5a3a334.ngrok.io/hackerton_record.php", "hurdle", user_id, "Record_hurdle" ,""+score);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+//        loadSql.save_record_to_server("https://4559a5a3a334.ngrok.io/hackerton_record.php", "hurdle", user_id, ""+score);
     }
 
     private void showScoreDialog() {

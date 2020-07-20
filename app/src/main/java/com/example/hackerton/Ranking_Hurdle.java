@@ -29,7 +29,7 @@ public class Ranking_Hurdle extends AppCompatActivity {
         SharedClass sharedClass = new SharedClass();
         user_id = sharedClass.loadUserId(getApplicationContext());
         Log.e("user_id: ", user_id);
-        user_id = "test3";
+//        user_id = "test3";
         my_ranking = findViewById(R.id.user_ranking_text);
         my_nickname = findViewById(R.id.user_nickname_text);
         my_score = findViewById(R.id.user_record_text);

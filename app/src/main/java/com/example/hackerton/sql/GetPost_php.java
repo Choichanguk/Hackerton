@@ -53,6 +53,7 @@ public class GetPost_php extends AsyncTask<String, Void, String> {
             serverURL = (String) params[0];
             String what = (String) params[1];
             postParameters = "what" + "=" + what;
+            Log.e("창욱", postParameters);
         }
         else if(params.length == 3){
             serverURL = (String) params[0];
@@ -62,20 +63,31 @@ public class GetPost_php extends AsyncTask<String, Void, String> {
             Log.e("key: ", key);
             Log.e("value: ", value);
             postParameters = key + "=" + value;
-            Log.e(TAG, postParameters);
+            Log.e("창욱", postParameters);
         }
-        else {
+        else if(params.length == 5){
             serverURL = (String) params[0];
             String key = (String) params[1];
             String value = (String) params[2];
             String key1 = (String) params[3];
             String value1 = (String) params[4];
 
-            Log.e("serverURL: ", serverURL);
+//            Log.e("serverURL: ", serverURL);
 //            Log.e("key: ", key);
 //            Log.e("value: ", value);
             postParameters = key + "=" + value + "&" + key1 + "=" + value1;
-            Log.e(TAG, postParameters);
+            Log.e("창욱", postParameters);
+        }
+        else{
+            serverURL = (String) params[0];
+            String key = (String) params[1];
+            String value = (String) params[2];
+            String key1 = (String) params[3];
+            String value1 = (String) params[4];
+            String key2 = (String) params[5];
+            String value2 = (String) params[6];
+            postParameters = key + "=" + value + "&" + key1 + "=" + value1 + "&" + key2 + "=" + value2;
+            Log.e("창욱", postParameters);
         }
 
 

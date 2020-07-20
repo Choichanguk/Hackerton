@@ -14,8 +14,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.hackerton.sql.LoadSql;
+
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 public class Weightlifting extends AppCompatActivity  {
 
@@ -319,6 +322,16 @@ public class Weightlifting extends AppCompatActivity  {
             }
             if (msg.what == 14) {
                 int save_time= msg.arg1;
+                SharedClass sharedClass = new SharedClass();
+                String user_id = sharedClass.loadUserId(getApplicationContext());
+                Log.e("역도 id: ", user_id);
+
+                LoadSql loadSql = new LoadSql(getApplicationContext());
+                try {
+                    loadSql.save_record_to_server("https://4559a5a3a334.ngrok.io/hackerton_record.php", "WL", user_id, "Record_WL" ,""+save_time);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
                 imageview.setImageResource(R.drawable.a12);
                 mediaPlayer = MediaPlayer.create(Weightlifting.this, R.raw.crap);
                 mediaPlayer.start();

@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG= "LoginActivity";
-    private static final String URL = "http://8dc0522ff79e.ngrok.io/hackerton.php";
+    private static final String URL = "http://4559a5a3a334.ngrok.io/hackerton.php";
     Button btn_register, btn_login, test;
     EditText id, password;
 
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                     sharedClass.saveLoginStatus(LoginActivity.this, true);
 
                     Toast.makeText(getApplicationContext(), "로그인에 성공했습니다.", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, GameMenuActivity.class);
                     startActivity(intent);
                 }
                 else{
