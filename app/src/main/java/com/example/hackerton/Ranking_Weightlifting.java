@@ -50,7 +50,7 @@ public class Ranking_Weightlifting extends AppCompatActivity {
 
         Log.e("list size: ", String.valueOf(WL_item.size()));
         WL_recycler = findViewById(R.id.WL_recycler);
-        adepter = new Weightlifting_Record_Adepter();
+        adepter = new Weightlifting_Record_Adepter(user_id);
         adepter.setItems(WL_item);
         WL_recycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         WL_recycler.setAdapter(adepter);

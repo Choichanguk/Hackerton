@@ -1,5 +1,7 @@
 package com.example.hackerton;
 
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,10 @@ import java.util.ArrayList;
 public class Weightlifting_Record_Adepter extends RecyclerView.Adapter<Weightlifting_Record_Adepter.ViewHolder> {
     ArrayList<Weightlifting_Record_Box> items = new ArrayList<Weightlifting_Record_Box>();
 //    OnScoreItemClickListener listener;
+    String user_id;
+    public Weightlifting_Record_Adepter(String user_id){
+        this.user_id = user_id;
+    }
 
     public void addItem(Weightlifting_Record_Box item) {
         items.add(item);
@@ -31,9 +37,7 @@ public class Weightlifting_Record_Adepter extends RecyclerView.Adapter<Weightlif
         items.set(position, item);
     }
 
-//    public void setOnItemClickListener(OnScoreItemClickListener listener) {
-//        this.listener = listener;
-//    }
+
 
 
     @NonNull
@@ -63,6 +67,16 @@ public class Weightlifting_Record_Adepter extends RecyclerView.Adapter<Weightlif
         holder.rankId.setText(item.getId());
         holder.rankRecord.setText(item.getScore());
         holder.setItem(item);
+
+        if(user_id.equals(item.getId())){
+            Log.e("adapter: ", user_id);
+            Log.e("adapter: ", "user_id");
+          /*  holder.itemView.setBackgroundColor(Color.YELLOW);*/
+            holder.rankNo.setTextColor(Color.GREEN);
+            holder.rankId.setTextColor(Color.GREEN);
+            holder.rankRecord.setTextColor(Color.GREEN);
+
+        }
     }
 
     @Override

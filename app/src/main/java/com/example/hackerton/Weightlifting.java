@@ -328,7 +328,7 @@ public class Weightlifting extends AppCompatActivity  {
 
                 LoadSql loadSql = new LoadSql(getApplicationContext());
                 try {
-                    loadSql.save_record_to_server("https://4559a5a3a334.ngrok.io/hackerton_record.php", "WL", user_id, "Record_WL" ,""+save_time);
+                    loadSql.save_record_to_server("http://4559a5a3a334.ngrok.io/hackerton_record.php", "WL", user_id, "Record_WL" ,""+save_time);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }

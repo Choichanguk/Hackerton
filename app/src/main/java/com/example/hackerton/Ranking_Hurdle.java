@@ -45,7 +45,7 @@ public class Ranking_Hurdle extends AppCompatActivity {
 
         Log.e("list size: ", String.valueOf(hurdle_item.size()));
         hurdle_recycler = findViewById(R.id.hurdle_recycler);
-        adepter = new Hurdle_Record_Adepter();
+        adepter = new Hurdle_Record_Adepter(user_id);
         adepter.setItems(hurdle_item);
         hurdle_recycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         hurdle_recycler.setAdapter(adepter);

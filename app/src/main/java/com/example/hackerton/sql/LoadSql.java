@@ -271,10 +271,20 @@ public class LoadSql {
                     String score = jsonObject.getString("Record_WL");
                     if(!score.equals("null")){
                         item.setId(id);
-                        item.setScore(score);
+                        int score2 = Integer.parseInt(score);
+                        final int mSec = score2 % 100;
+                        final int sec = (score2 / 100) % 60;
+                        final int min = (score2 / 100) / 60;
+                        String result = String.format("%02d:%02d:%02d",  min, sec, mSec);
+                        item.setScore(result + "초");
                         WL_item.add(item);
                         Log.e("task", id);
                         Log.e("task", score);
+//                        item.setId(id);
+//                        item.setScore(score);
+//                        WL_item.add(item);
+//                        Log.e("task", id);
+//                        Log.e("task", score);
                     }
                 }
 

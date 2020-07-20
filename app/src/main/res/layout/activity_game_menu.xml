@@ -7,27 +7,10 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btnStartBombGame"
-        android:layout_width="190dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/button_drawable"
-        android:text="폭탄 돌리기"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnStartWeightliftingGame"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
         android:id="@+id/btnStartWeightliftingGame"
         android:layout_width="190dp"
         android:layout_height="60dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/button_drawable"
         android:bottomLeftRadius="12dp"
         android:bottomRightRadius="12dp"
@@ -38,7 +21,7 @@
         android:topLeftRadius="12dp"
         android:topRightRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnStartAvoidGame" />
 
@@ -50,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/noiselogo" />
+        app:srcCompat="@drawable/mainimage" />
 
     <Button
         android:id="@+id/btnStartAvoidGame"
@@ -73,9 +56,9 @@
 
     <Button
         android:id="@+id/btnShowRecord"
-        android:layout_width="108dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="136dp"
+        android:layout_width="190dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/button_drawable"
         android:bottomLeftRadius="12dp"
         android:bottomRightRadius="12dp"
@@ -85,17 +68,16 @@
         android:textStyle="bold"
         android:topLeftRadius="12dp"
         android:topRightRadius="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/btnFinish"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/btnFinish"
-        app:layout_constraintTop_toBottomOf="@+id/imgGameLogo" />
+        app:layout_constraintEnd_toEndOf="@+id/btnStartWeightliftingGame"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnStartWeightliftingGame"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartWeightliftingGame" />
 
     <Button
         android:id="@+id/btnFinish"
         android:layout_width="108dp"
         android:layout_height="39dp"
-        android:layout_marginEnd="112dp"
-        android:layout_marginRight="112dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/button_drawable"
         android:bottomLeftRadius="12dp"
         android:bottomRightRadius="12dp"
@@ -105,9 +87,48 @@
         android:textStyle="bold"
         android:topLeftRadius="12dp"
         android:topRightRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnStartBombGame"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnShowRecord"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.874"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="108dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/button_drawable"
+        android:bottomLeftRadius="12dp"
+        android:bottomRightRadius="12dp"
+        android:text="로그인"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:topLeftRadius="12dp"
+        android:topRightRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.874"
+        app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="108dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/button_drawable"
+        android:bottomLeftRadius="12dp"
+        android:bottomRightRadius="12dp"
+        android:text="로그아웃"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:topLeftRadius="12dp"
+        android:topRightRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.874"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
