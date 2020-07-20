@@ -14,8 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ShowRecordActivity"
-            android:screenOrientation="landscape" ></activity>
+        <activity android:name=".Ranking_Hurdle"></activity>
+        <activity android:name=".Ranking_Weightlifting" />
+        <activity
+            android:name=".ShowRecordActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".Weightlifting"
             android:screenOrientation="landscape" />
