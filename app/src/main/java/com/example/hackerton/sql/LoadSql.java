@@ -27,8 +27,6 @@ public class LoadSql {
      */
 
     public void Load_one_usr_data(String key, String value) {
-
-
         try {
             GetPost_php task = new GetPost_php(mContext);
             task.execute(URL,key,value);
@@ -192,14 +190,45 @@ public class LoadSql {
         GetPost_php task = new GetPost_php(mContext);
         task.execute(URL1,"ID",user_id, "PW", user_pw);
 
-//        PHPRequest request = new PHPRequest(URL1, user_id, user_pw, "기본");
-//        request.start();
-//        try {
-//            request.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+    }
+
+    public void get_all_record(String url, String what){
+//        Collections.sort(clear_time);
+        try {
+            GetPost_php task = new GetPost_php(mContext);
+            task.execute(url, what);
+
+            String callBackValue = task.get();
+            Log.e("task", callBackValue);
+            if(callBackValue.isEmpty() || callBackValue.equals("") || callBackValue == null || callBackValue.contains("Error")) {
+                Toast.makeText(mContext, "등록되지 않은 사용자이거나, 전송오류입니다.", Toast.LENGTH_SHORT).show();
+            }
+            // success
+            else {
+                JSONArray jsonArray = null;
+
+                jsonArray = new JSONArray(callBackValue);
+
+                for(int i=0; i < jsonArray.length(); i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String id = jsonObject.getString("ID");
+                    String pw = jsonObject.getString("Record_hurdle");
+                    Log.e("task", id);
+                    Log.e("task", pw);
+                }
 
 
+
+                // TODO : callBackValue를 이용해서 코드기술
+            }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//        return can_register;
     }
 }

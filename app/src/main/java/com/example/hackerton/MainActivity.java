@@ -16,22 +16,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.hackerton.sql.LoadSql;
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_menu);
+        setContentView(R.layout.activity_main);
 
 
-        Button test1 = findViewById(R.id.test1);
-        test1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(), Weightlifting.class);
-
-                startActivity(intent1);
-            }
-        });
+//        Button test1 = findViewById(R.id.test1);
+//        test1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent1 = new Intent(getApplicationContext(), Weightlifting.class);
+//
+//                startActivity(intent1);
+//            }
+//        });
 
 
         Button test6 = findViewById(R.id.login_btn);
@@ -67,6 +69,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        Button record = findViewById(R.id.btn_record);
+        record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Main", "click");
+                LoadSql loadSql = new LoadSql(MainActivity.this);
+                loadSql.get_all_record("https://4559a5a3a334.ngrok.io/hackerton_record.php", "hurdle");
+            }
+        });
 
         checkSelfPermission();
     }

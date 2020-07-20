@@ -49,7 +49,12 @@ public class GetPost_php extends AsyncTask<String, Void, String> {
         // POST 방식으로 데이터 전달시에는 데이터가 주소에 직접 입력되지 않습니다.
         String postParameters;
         String serverURL;
-        if(params.length == 3){
+        if(params.length == 2){
+            serverURL = (String) params[0];
+            String what = (String) params[1];
+            postParameters = "what" + "=" + what;
+        }
+        else if(params.length == 3){
             serverURL = (String) params[0];
             String key = (String) params[1];
             String value = (String) params[2];
