@@ -49,13 +49,29 @@ public class GameMenuActivity extends AppCompatActivity {
             }
         });
 
-        btnShowRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ShowRecordActivity.class);
-                startActivity(intent);
-            }
-        });
+//        btnShowRecord.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), ShowRecordActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        /*
+        역도와 허들의 랭킹을 볼 수 있는 화면으로 전환되기 위한 소스이다.
+        */
+        Button btnShowRecord = findViewById(R.id.btnShowRecord);
+        btnShowRecord.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), Ranking_Weightlifting.class);
+                        startActivity(intent);
+                        //화면 전환을 부드럽게 해주는 소스이다.
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    }
+                }
+        );
 
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
