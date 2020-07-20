@@ -14,12 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Weightlifting"
+        <activity android:name=".ShowRecordActivity"
             android:screenOrientation="landscape" ></activity>
-        <activity android:name=".GameActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".StartGame"
-            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".Weightlifting"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".GameActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".StartGame"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".GameMenuActivity"
             android:screenOrientation="landscape" />

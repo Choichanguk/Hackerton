@@ -18,16 +18,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnStartWeightliftingGame"
-        app:layout_constraintVertical_bias="0.063" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnStartWeightliftingGame"
         android:layout_width="190dp"
         android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/button_drawable"
         android:bottomLeftRadius="12dp"
         android:bottomRightRadius="12dp"
@@ -38,7 +38,7 @@
         android:topLeftRadius="12dp"
         android:topRightRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnStartAvoidGame" />
 
@@ -56,7 +56,7 @@
         android:id="@+id/btnStartAvoidGame"
         android:layout_width="190dp"
         android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/button_drawable"
         android:bottomLeftRadius="12dp"
         android:bottomRightRadius="12dp"
@@ -70,5 +70,44 @@
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgGameLogo" />
+
+    <Button
+        android:id="@+id/btnShowRecord"
+        android:layout_width="108dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/button_drawable"
+        android:bottomLeftRadius="12dp"
+        android:bottomRightRadius="12dp"
+        android:text="기록보기"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:topLeftRadius="12dp"
+        android:topRightRadius="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/btnFinish"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnFinish"
+        app:layout_constraintTop_toBottomOf="@+id/imgGameLogo" />
+
+    <Button
+        android:id="@+id/btnFinish"
+        android:layout_width="108dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginRight="112dp"
+        android:background="@drawable/button_drawable"
+        android:bottomLeftRadius="12dp"
+        android:bottomRightRadius="12dp"
+        android:text="종료하기"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:topLeftRadius="12dp"
+        android:topRightRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnStartBombGame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowRecord"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

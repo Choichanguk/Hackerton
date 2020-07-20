@@ -14,30 +14,6 @@
         android:text="RecordTest1" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="RecordTest2" />
-
-    <Button
-        android:id="@+id/test2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="surface" />
-
-    <Button
-        android:id="@+id/test3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="test3" />
-
-    <Button
-        android:id="@+id/test4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="sql test" />
-
-    <Button
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,6 +24,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Gamestart" />
+
+    <Button
+        android:id="@+id/test_show_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="show_menu" />
 
 
 </LinearLayout>

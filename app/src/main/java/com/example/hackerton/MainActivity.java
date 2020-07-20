@@ -33,44 +33,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button test2 = findViewById(R.id.test2);
-        test2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), test2.class);
-
-                startActivity(intent2);
-            }
-        });
-
-        Button test3 = findViewById(R.id.test3);
-        test3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent3 = new Intent(getApplicationContext(), test3.class);
-
-                startActivity(intent3);
-            }
-        });
-
-        Button test4 = findViewById(R.id.test4);
-        test4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent4 = new Intent(getApplicationContext(), LoginActivity.class);
-
-                startActivity(intent4);
-            }
-        });
-
-        Button test5 = findViewById(R.id.button);
-        test5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MediaRecordDemo2.class);
-                startActivity(intent);
-            }
-        });
 
         Button test6 = findViewById(R.id.login_btn);
         test6.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +51,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button showMenu = findViewById(R.id.test_show_menu);
+        showMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GameMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         checkSelfPermission();
     }
