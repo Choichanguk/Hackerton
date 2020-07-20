@@ -22,6 +22,17 @@ public class Weightlifting extends AppCompatActivity  {
     Button start_click_button;
 
     MediaRecorderDemo mediaRecorderDemo = new MediaRecorderDemo();
+
+    /*
+    게임 동작에 대한 진도율과 관련되어 있는 변수입니다.
+    */
+    int percent = 0;
+    TextView percent_text;
+
+    int startTime;
+    int endTime;
+
+
     /*
     게임 종료와 관련되어 있는 변수이다.
     */
@@ -36,7 +47,7 @@ public class Weightlifting extends AppCompatActivity  {
     게임 플레이 제한시간과 관련되어 있는 변수입니다.
     */
     int clock = 20;
-    int clock_decrease = 0;
+//    int clock_decrease = 0;
     TextView clock_text;
 
     /*
@@ -203,7 +214,7 @@ public class Weightlifting extends AppCompatActivity  {
                         e.printStackTrace();
                     }
                 }
-
+                endTime = (int) System.currentTimeMillis();
                 Message msg = new Message();
                 msg.arg1 = i++;
                 msg.what = 14;
@@ -224,57 +235,96 @@ public class Weightlifting extends AppCompatActivity  {
      */
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
-            int mSec = msg.arg1 % 100;
-            int sec = (msg.arg1 / 100) % 60;
-            int min = (msg.arg1 / 100) / 60;
+            final int mSec = msg.arg1 % 100;
+            final int sec = (msg.arg1 / 100) % 60;
+            final int min = (msg.arg1 / 100) / 60;
             result = String.format("%02d:%02d:%02d",  min, sec, mSec);
             clock_text.setText(result);
-//            Log.e("result", "result: " + result);
+//            Log.i("result", "result: " + i);
             if (msg.what == 0) {
                 clock_text = (TextView) findViewById(R.id.clock);
                 imageview.setImageResource(R.drawable.a01);
             }
             if (msg.what == 2) {
                 imageview.setImageResource(R.drawable.a01);
+                percent=0;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 3) {
                 imageview.setImageResource(R.drawable.a02);
+                percent=8;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 4) {
                 imageview.setImageResource(R.drawable.a03);
+                percent=16;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 5) {
                 imageview.setImageResource(R.drawable.a04);
+                percent=24;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 6) {
                 imageview.setImageResource(R.drawable.a05);
+                percent=32;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 7) {
                 imageview.setImageResource(R.drawable.a06);
+                percent=40;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 8) {
                 imageview.setImageResource(R.drawable.a07);
+                percent=48;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 9) {
                 imageview.setImageResource(R.drawable.a08);
+                percent=56;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 10) {
                 imageview.setImageResource(R.drawable.a09);
+                percent=67;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 11) {
                 imageview.setImageResource(R.drawable.a10);
+                percent=75;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 12) {
                 imageview.setImageResource(R.drawable.a11);
+                percent=84;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 13) {
                 imageview.setImageResource(R.drawable.a12);
-
+                percent=95;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
             }
             if (msg.what == 14) {
+                int save_time= msg.arg1;
                 imageview.setImageResource(R.drawable.a12);
                 mediaPlayer = MediaPlayer.create(Weightlifting.this, R.raw.crap);
                 mediaPlayer.start();
+                percent=100;
+                percent_text = (TextView) findViewById(R.id.percent_text);
+                percent_text.setText(percent+"%");
 
                 end = false;
                 start_click_button.setVisibility(View.VISIBLE);
