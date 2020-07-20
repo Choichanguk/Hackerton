@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -123,6 +124,13 @@ public class RegisterActivity extends AppCompatActivity {
                     alertDialog.show();
                 }
                 else {
+                    LoadSql loadSql = new LoadSql(RegisterActivity.this);
+
+                    try {
+                        loadSql.save_usr_info_to_server(ID, pw);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
 
                     builder.setTitle("회원가입").setMessage("회원가입에 성공했습니다. 로그인 화면으로 이동합니다.");
                     builder.setNegativeButton("확인", successButtonClickListener);

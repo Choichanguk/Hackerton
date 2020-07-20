@@ -257,7 +257,7 @@ public class GameView extends View {
         int action = event.getAction();
         if(action == MotionEvent.ACTION_DOWN){ //That is tap is detected on screen
             //Here we want the bird to move upwards by some unit
-            velocity = -30; //Let's say, 30 units on upward directions
+            velocity = -50; //Let's say, 30 units on upward directions
             gameState = true;
 
     }
@@ -314,6 +314,7 @@ public class GameView extends View {
                 mMediaRecorder.prepare();
                 /* ④ start */
                 mMediaRecorder.start();
+
                 // AudioRecord audioRecord.
                 /* * * Acquisition start time */
                 startTime = System.currentTimeMillis();

@@ -8,12 +8,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class LoadSql {
     private static final String TAG= "LoadSql";
-    private static final String URL = "http://8dc0522ff79e.ngrok.io/hackerton.php";
+    private static final String URL = "http://4f11ce3a7f3c.ngrok.io/hackerton.php";
+    private static final String URL1 = "http://4f11ce3a7f3c.ngrok.io/hackerton_save.php";   // 서버로 유저 정보, 기록 저장시킬때 사용하는 URL
 
     Context mContext = null;
     public LoadSql(Context mContext){
@@ -181,5 +183,18 @@ public class LoadSql {
         }
 
         return can_register;
+    }
+
+    /**
+     *
+     */
+    public void save_usr_info_to_server(String user_id, String user_pw) throws MalformedURLException {
+        PHPRequest request = new PHPRequest(URL1, user_id, user_pw, "기본");
+        request.start();
+        try {
+            request.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
